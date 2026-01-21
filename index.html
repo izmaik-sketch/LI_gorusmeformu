@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Golden Citizen - WhatsApp Ön Değerlendirme Formu</title>
+    <title>Golden Citizen - Uygunluk Analizi</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --primary-color: #3a4688; 
             --text-color: #333;
-            --bg-color: #def2f1
-            --input-border: #ddd;
+            /* Arka planı biraz daha belirgin bir mavi yaptım */
+            --bg-color: #dbeafe; 
+            --input-border: #cbd5e1;
         }
 
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-color);
+            background-image: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
             margin: 0;
             padding: 20px;
             display: flex;
@@ -26,17 +28,17 @@
         }
 
         .form-container {
-            background-color: #fff;
+            background-color: #ffffff;
             padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); 
             width: 100%;
-            max-width: 500px;
+            max-width: 480px;
             text-align: center;
         }
 
         .logo {
-            max-width: 280px;
+            max-width: 260px; /* Logonun büyüklüğünü buradan ayarlayabilirsiniz */
             height: auto;
             margin-bottom: 25px;
             display: inline-block;
@@ -44,206 +46,114 @@
 
         h1 {
             color: var(--primary-color);
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 700;
-            margin-bottom: 15px;
-            line-height: 1.3;
+            margin-bottom: 12px;
+            line-height: 1.2;
         }
 
         .subtitle {
-            font-size: 14px;
-            color: #555;
+            font-size: 15px;
+            color: #475569;
             margin-bottom: 20px;
             line-height: 1.5;
         }
 
         .trust-text {
-            font-size: 12px;
-            color: #777;
-            background-color: #f9f9f9;
-            padding: 10px;
-            border-radius: 6px;
-            margin-bottom: 30px;
-            border-left: 4px solid var(--primary-color);
-            text-align: left;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 8px;
-        }
-
-        input[type="text"], input[type="email"], input[type="tel"], select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--input-border);
-            border-radius: 6px;
-            font-size: 14px;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .radio-option {
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        .radio-option input {
-            margin-right: 10px;
-            accent-color: var(--primary-color);
-        }
-
-        .consent-group {
-            display: flex;
-            align-items: flex-start;
-            text-align: left;
-            margin: 25px 0;
             font-size: 13px;
-            color: #555;
+            color: #64748b;
+            background-color: #f1f5f9;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--primary-color);
+            text-align: left;
         }
 
-        .consent-group input {
-            margin-right: 12px;
-            margin-top: 3px;
-            cursor: pointer;
+        /* Form elemanları ve diğer stiller aynı kalıyor... */
+        .form-group { margin-bottom: 18px; text-align: left; }
+        label { display: block; font-size: 14px; font-weight: 600; color: var(--primary-color); margin-bottom: 6px; }
+        input[type="text"], input[type="email"], input[type="tel"], select {
+            width: 100%; padding: 12px; border: 2px solid var(--input-border); border-radius: 10px; font-size: 14px; box-sizing: border-box;
         }
-
+        .radio-group { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+        .radio-option { display: flex; align-items: center; font-size: 14px; cursor: pointer; padding: 8px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; }
+        .radio-option input { margin-right: 12px; accent-color: var(--primary-color); }
+        .consent-group { display: flex; align-items: flex-start; text-align: left; margin: 25px 0; font-size: 12px; color: #64748b; }
+        .consent-group input { margin-right: 12px; margin-top: 2px; }
         .cta-button {
-            width: 100%;
-            padding: 16px;
-            background-color: #25D366; /* WhatsApp Yeşili */
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .cta-button:hover {
-            background-color: #128C7E;
+            width: 100%; padding: 18px; background-color: #25D366; color: white; border: none; border-radius: 12px; font-size: 17px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
         }
     </style>
 </head>
 <body>
 
     <div class="form-container">
-        <img src="https://www.goldencitizen.com.tr/upload/logo.png" alt="Golden Citizen" class="logo">
+        <img src="logo.png" alt="Golden Citizen" class="logo">
 
-        <h1>Yunanistan Oturum İzni<br>Kişisel Uygunluk Görüşmesi</h1>
+        <h1>Yunanistan Oturum İzni<br>Uygunluk Analizi</h1>
 
         <p class="subtitle">
-            Bu görüşme bir tanıtım veya satış süreci değildir. Yunanistan Golden Visa’nın sizin koşullarınız ve planlarınız açısından anlamlı olup olmadığını değerlendirme amaçlıdır.
+            Ali İrfan Kaynak denetiminde, Golden Visa uygunluğunuzu 1 dakikada analiz edin.
         </p>
 
         <div class="trust-text">
-            <strong>Bu süreç herkese uygun değildir.</strong><br>
-            Bilgileriniz yalnızca uygunluk değerlendirmesi için kullanılır.
+            <strong>Güvenli İletişim:</strong><br>
+            Verileriniz analiz edildikten sonra doğrudan danışmanımıza WhatsApp üzerinden iletilir.
         </div>
 
         <form id="leadForm">
             <div class="form-group">
                 <label>Ad Soyad *</label>
-                <input type="text" id="name" required placeholder="Adınız ve Soyadınız">
+                <input type="text" id="name" required>
             </div>
-
             <div class="form-group">
                 <label>E-posta Adresi *</label>
-                <input type="email" id="email" required placeholder="örnek@email.com">
+                <input type="email" id="email" required>
             </div>
-
             <div class="form-group">
-                <label>Telefon (WhatsApp) *</label>
-                <input type="tel" id="phone" required placeholder="0533 285 30 31">
+                <label>WhatsApp Numaranız *</label>
+                <input type="tel" id="phone" required placeholder="05XX XXX XX XX">
             </div>
-
             <div class="form-group">
-                <label>Ana Motivasyon *</label>
+                <label>Yatırım Motivasyonunuz? *</label>
                 <select id="motivation" required>
-                    <option value="" disabled selected>Lütfen seçiniz...</option>
-                    <option>Ailem ve çocuklarım için uzun vadeli bir Avrupa planı</option>
+                    <option value="" disabled selected>Seçiniz...</option>
+                    <option>Ailem ve çocuklarım için Avrupa planı</option>
                     <option>İş ve yaşam hareketliliği</option>
-                    <option>Mevcut ülkedeki belirsizlikleri dengelemek</option>
-                    <option>Avrupa’da mülk temelli yapı kurmak</option>
-                    <option>Henüz emin değilim, netlik arıyorum</option>
+                    <option>Mevcut belirsizlikleri dengelemek</option>
+                    <option>Avrupa’da mülk portföyü kurmak</option>
                 </select>
             </div>
-
             <div class="form-group">
-                <label>Tahmini zaman ufkunuz *</label>
+                <label>Tahmini Süreç *</label>
                 <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="timeframe" value="0–3 ay" required> 0–3 ay</label>
-                    <label class="radio-option"><input type="radio" name="timeframe" value="3–6 ay"> 3–6 ay</label>
-                    <label class="radio-option"><input type="radio" name="timeframe" value="6–12 ay"> 6–12 ay</label>
-                    <label class="radio-option"><input type="radio" name="timeframe" value="Net değil"> Net değil</label>
+                    <label class="radio-option"><input type="radio" name="timeframe" value="0-3 ay" required> 0-3 Ay</label>
+                    <label class="radio-option"><input type="radio" name="timeframe" value="3-6 ay"> 3-6 Ay</label>
+                    <label class="radio-option"><input type="radio" name="timeframe" value="6-12 ay"> 6-12 Ay</label>
                 </div>
             </div>
-
             <div class="consent-group">
                 <input type="checkbox" id="consent" required>
-                <label for="consent">Paylaştığım bilgilerin ön değerlendirme amacıyla kullanılacağını anlıyorum.</label>
+                <label for="consent">Verilerimin analiz için WhatsApp üzerinden uzman danışmana iletilmesini onaylıyorum.</label>
             </div>
-
-            <button type="submit" class="cta-button">
-                Ön Değerlendirme Talep Et
-            </button>
+            <button type="submit" class="cta-button">Analizi WhatsApp İle Al</button>
         </form>
     </div>
 
     <script>
         document.getElementById('leadForm').addEventListener('submit', function(e) {
             e.preventDefault();
-
-            // Verileri al
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
             const motivation = document.getElementById('motivation').value;
             const timeframe = document.querySelector('input[name="timeframe"]:checked').value;
 
-            // WhatsApp Mesajını Oluştur
-            const message = `*Yeni Ön Değerlendirme Talebi (Golden Citizen)*%0A%0A` +
-                            `*Ad Soyad:* ${name}%0A` +
-                            `*Email:* ${email}%0A` +
-                            `*Telefon:* ${phone}%0A` +
-                            `*Motivasyon:* ${motivation}%0A` +
-                            `*Zaman Ufku:* ${timeframe}%0A%0A` +
-                            `_Bu mesaj web sitesindeki lead formu üzerinden iletilmiştir._`;
-
-            // WhatsApp Yönlendirmesi
+            const message = `*Golden Citizen - Uygunluk Analizi*%0A%0A*Yatırımcı:* ${name}%0A*E-posta:* ${email}%0A*WhatsApp:* ${phone}%0A*Motivasyon:* ${motivation}%0A*Süre:* ${timeframe}`;
             const whatsappNumber = "905332853031";
-            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
-
-            window.open(whatsappURL, '_blank');
+            window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
         });
     </script>
-
 </body>
-
 </html>
-
-
-
-
